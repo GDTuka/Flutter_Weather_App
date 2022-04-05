@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/data/repository/weather_repository.dart';
-import 'package:weather_app/screens/fiveDay/view/five_days.dart';
+import 'package:weather_app/screens/fiveDay/view/five_days_view.dart';
 import 'package:weather_app/screens/home/view/home_view.dart';
 
 class App extends StatelessWidget {
@@ -11,7 +11,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return RepositoryProvider.value(
       value: weatherRepository,
-      child: AppView(),
+      child: const AppView(),
     );
   }
 }
@@ -22,9 +22,13 @@ class AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.white, scaffoldBackgroundColor: Colors.white),
+      theme: ThemeData(
+          primaryColor: Colors.white, scaffoldBackgroundColor: Colors.white),
       initialRoute: '/',
-      routes: {'/': (context) => const Home(), '/fiveDay': (context) => const FiveDay()},
+      routes: {
+        '/': (context) => const Home(),
+        '/fiveDay': (context) => const FiveDay()
+      },
     );
   }
 }

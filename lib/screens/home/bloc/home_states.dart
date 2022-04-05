@@ -8,7 +8,16 @@ class WeatherLoading extends HomeState {}
 class WeatherLoaded extends HomeState {
   MainWeather weather;
   String weatherPicture;
-  WeatherLoaded(this.weather,this.weatherPicture);
+  WeatherLoaded(this.weather, this.weatherPicture);
 }
 
-class NavigateToOtherPage extends HomeState {}
+class NavigateToOtherPage extends HomeState {
+  MainWeather weather;
+  NavigateToOtherPage(this.weather);
+}
+
+class ShareState extends HomeState {
+  MainWeather weather;
+  String weatherPicture;
+  ShareState(this.weather, this.weatherPicture);
+}

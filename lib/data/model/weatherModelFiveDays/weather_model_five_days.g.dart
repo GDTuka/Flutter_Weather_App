@@ -6,19 +6,23 @@ part of 'weather_model_five_days.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-FiveDayWeather _$FiveDayWeatherFromJson(Map<String, dynamic> json) => FiveDayWeather(
+FiveDayWeather _$FiveDayWeatherFromJson(Map<String, dynamic> json) =>
+    FiveDayWeather(
       (json['lat'] as num).toDouble(),
       (json['lon'] as num).toDouble(),
       json['timezone'] as String,
-      json['timezoneOffset'] as int,
-      (json['daily'] as List<dynamic>).map((e) => Daily.fromJson(e as Map<String, dynamic>)).toList(),
+      json['timezone_offset'] as int,
+      (json['daily'] as List<dynamic>)
+          .map((e) => Daily.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
-Map<String, dynamic> _$FiveDayWeatherToJson(FiveDayWeather instance) => <String, dynamic>{
+Map<String, dynamic> _$FiveDayWeatherToJson(FiveDayWeather instance) =>
+    <String, dynamic>{
       'lat': instance.lat,
       'lon': instance.lon,
       'timezone': instance.timezone,
-      'timezoneOffset': instance.timezoneOffset,
+      'timezone_offset': instance.timezoneOffset,
       'daily': instance.daily,
     };
 
@@ -37,7 +41,9 @@ Daily _$DailyFromJson(Map<String, dynamic> json) => Daily(
       (json['wind_speed'] as num).toDouble(),
       json['wind_deg'] as int,
       (json['wind_gust'] as num).toDouble(),
-      (json['weather'] as List<dynamic>).map((e) => Weather.fromJson(e as Map<String, dynamic>)).toList(),
+      (json['weather'] as List<dynamic>)
+          .map((e) => Weather.fromJson(e as Map<String, dynamic>))
+          .toList(),
       json['clouds'] as int,
       (json['pop'] as num).toDouble(),
       (json['rain'] as num?)?.toDouble(),

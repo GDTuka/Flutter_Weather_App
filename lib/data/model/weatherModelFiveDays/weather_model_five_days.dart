@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:weather_app/data/services/api_servisec.dart';
 
 part 'weather_model_five_days.g.dart';
 
@@ -11,8 +10,10 @@ class FiveDayWeather {
   int timezoneOffset;
   List<Daily> daily;
 
-  FiveDayWeather(this.lat, this.lon, this.timezone, this.timezoneOffset, this.daily);
-  factory FiveDayWeather.fromJson(Map<String, dynamic> json) => _$FiveDayWeatherFromJson(json);
+  FiveDayWeather(
+      this.lat, this.lon, this.timezone, this.timezoneOffset, this.daily);
+  factory FiveDayWeather.fromJson(Map<String, dynamic> json) =>
+      _$FiveDayWeatherFromJson(json);
   Map<String, dynamic> toJson() => _$FiveDayWeatherToJson(this);
 }
 
@@ -38,7 +39,26 @@ class Daily {
   double? rain;
   double? uvi;
 
-  Daily(this.dt, this.sunrise, this.sunset, this.moonrise, this.moonset, this.moonPhase, this.temp, this.feelsLike, this.pressure, this.humidity, this.dewPoint, this.windSpeed, this.windDeg, this.windGust, this.weather, this.clouds, this.pop, this.rain, this.uvi);
+  Daily(
+      this.dt,
+      this.sunrise,
+      this.sunset,
+      this.moonrise,
+      this.moonset,
+      this.moonPhase,
+      this.temp,
+      this.feelsLike,
+      this.pressure,
+      this.humidity,
+      this.dewPoint,
+      this.windSpeed,
+      this.windDeg,
+      this.windGust,
+      this.weather,
+      this.clouds,
+      this.pop,
+      this.rain,
+      this.uvi);
   factory Daily.fromJson(Map<String, dynamic> json) => _$DailyFromJson(json);
   Map<String, dynamic> toJson() => _$DailyToJson(this);
 }
@@ -65,7 +85,8 @@ class FeelsLike {
   double morn;
 
   FeelsLike(this.day, this.night, this.eve, this.morn);
-  factory FeelsLike.fromJson(Map<String, dynamic> json) => _$FeelsLikeFromJson(json);
+  factory FeelsLike.fromJson(Map<String, dynamic> json) =>
+      _$FeelsLikeFromJson(json);
   Map<String, dynamic> toJson() => _$FeelsLikeToJson(this);
 }
 
@@ -77,6 +98,7 @@ class Weather {
   String icon;
 
   Weather(this.id, this.main, this.description, this.icon);
-  factory Weather.fromJson(Map<String, dynamic> json) => _$WeatherFromJson(json);
+  factory Weather.fromJson(Map<String, dynamic> json) =>
+      _$WeatherFromJson(json);
   Map<String, dynamic> toJson() => _$WeatherToJson(this);
 }

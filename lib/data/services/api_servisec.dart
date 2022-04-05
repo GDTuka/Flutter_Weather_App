@@ -65,7 +65,9 @@ class WeatherApi extends Weather {
     String serverLink = await generateWeatherApiLink(true);
     http.Response response;
     response = await http.post(Uri.parse(serverLink));
+    print(response.statusCode);
     FiveDayWeather weather = FiveDayWeather.fromJson(jsonDecode(response.body));
+    print(weather.lat);
     return weather;
   }
 }
