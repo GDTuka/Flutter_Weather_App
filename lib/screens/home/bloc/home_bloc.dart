@@ -13,7 +13,7 @@ class HomeBloc extends Bloc<HomeEvents, HomeState> {
   }
 
   Future<void> _loadWeather(LoadWeatherEvent event, Emitter emit) async {
-    await _repository.getCurrentWeahter();
+    await _repository.getFiveDayWeather();
   }
 
   Future<void> _navigateToFiveDayPage(NavigateToFiveDayPageEvent event, Emitter emit) async {

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'weatherModel.dart';
+part of 'weather_model_current.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -8,7 +8,9 @@ part of 'weatherModel.dart';
 
 MainWeather _$MainWeatherFromJson(Map<String, dynamic> json) => MainWeather(
       Coord.fromJson(json['coord'] as Map<String, dynamic>),
-      (json['weather'] as List<dynamic>).map((e) => Weather.fromJson(e as Map<String, dynamic>)).toList(),
+      (json['weather'] as List<dynamic>)
+          .map((e) => Weather.fromJson(e as Map<String, dynamic>))
+          .toList(),
       json['base'] as String,
       Main.fromJson(json['main'] as Map<String, dynamic>),
       json['visibility'] as int,
@@ -22,7 +24,8 @@ MainWeather _$MainWeatherFromJson(Map<String, dynamic> json) => MainWeather(
       json['cod'] as int,
     );
 
-Map<String, dynamic> _$MainWeatherToJson(MainWeather instance) => <String, dynamic>{
+Map<String, dynamic> _$MainWeatherToJson(MainWeather instance) =>
+    <String, dynamic>{
       'coord': instance.coord,
       'weather': instance.weather,
       'base': instance.base,
@@ -64,18 +67,18 @@ Map<String, dynamic> _$WeatherToJson(Weather instance) => <String, dynamic>{
 
 Main _$MainFromJson(Map<String, dynamic> json) => Main(
       (json['temp'] as num).toDouble(),
-      (json['feels_like'] as num).toDouble(),
-      (json['temp_min'] as num).toDouble(),
-      (json['temp_max'] as num).toDouble(),
+      (json['feelsLike'] as num).toDouble(),
+      (json['tempMin'] as num).toDouble(),
+      (json['tempMax'] as num).toDouble(),
       json['pressure'] as int,
       json['humidity'] as int,
     );
 
 Map<String, dynamic> _$MainToJson(Main instance) => <String, dynamic>{
       'temp': instance.temp,
-      'feels_like': instance.feelsLike,
-      'temp_min': instance.tempMin,
-      'temp_max': instance.tempMax,
+      'feelsLike': instance.feelsLike,
+      'tempMin': instance.tempMin,
+      'tempMax': instance.tempMax,
       'pressure': instance.pressure,
       'humidity': instance.humidity,
     };

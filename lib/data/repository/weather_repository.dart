@@ -1,10 +1,11 @@
-import 'package:weather_app/data/model/weatherModel.dart';
+import 'package:weather_app/data/model/weatherModelFiveDays/weather_model_five_days.dart';
+import 'package:weather_app/data/model/weather_model_current.dart';
 import 'package:weather_app/data/services/api_servisec.dart';
 
 class WeatherRepository {
   WeatherRepository({required WeatherApi weatherApi}) : _weatherApi = weatherApi;
   WeatherApi _weatherApi;
-  Future<String> generateServerLink() async => _weatherApi.generateWeatherApiLink();
+  Future<String> generateServerLink(bool now) async => _weatherApi.generateWeatherApiLink(now);
   Future<MainWeather> getCurrentWeahter() async => _weatherApi.getCurrentWeatherData();
-  Future<String> getFiveDayWeather() async => _weatherApi.getFiveDayWeatherData();
+  Future<FiveDayWeather> getFiveDayWeather() async => _weatherApi.getFiveDayWeatherData();
 }
