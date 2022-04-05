@@ -10,3 +10,8 @@ class WeatherLoadedState extends FiveDayStates {
 }
 
 class NavigateToHomeState extends FiveDayStates {}
+
+class ShareState extends FiveDayStates {
+  FiveDayWeather weather;
+  ShareState(this.weather);
+}

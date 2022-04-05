@@ -67,6 +67,14 @@ class WeatherApi extends Weather {
     response = await http.post(Uri.parse(serverLink));
     print(response.statusCode);
     FiveDayWeather weather = FiveDayWeather.fromJson(jsonDecode(response.body));
+    for (int i = 0; i < weather.daily.length; i++) {
+      weather.daily[i].temp.morn =
+          (weather.daily[i].temp.morn - 273.15).roundToDouble();
+      weather.daily[i].temp.day =
+          (weather.daily[i].temp.day - 273.15).roundToDouble();
+      weather.daily[i].temp.night =
+          (weather.daily[i].temp.night - 273.15).roundToDouble();
+    }
     print(weather.lat);
     return weather;
   }

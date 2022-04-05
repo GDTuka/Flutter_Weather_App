@@ -12,6 +12,7 @@ class FiveDayBloc extends Bloc<FiveDayEvents, FiveDayStates> {
         super(WeatherLoadingState()) {
     on<LoadWeatherEvent>((event, emit) => _loadWeather(event, emit));
     on<NavigateToHomeEvent>((event, emit) => _navigateToHome(event, emit));
+    on<ShareEvent>((event, emit) => _share(event, emit));
   }
   Future<void> _loadWeather(LoadWeatherEvent event, Emitter emit) async {
     emit(WeatherLoadingState());
@@ -25,5 +26,13 @@ class FiveDayBloc extends Bloc<FiveDayEvents, FiveDayStates> {
 
   Future<void> _navigateToHome(NavigateToHomeEvent event, Emitter emit) async {
     emit(NavigateToHomeState());
+  }
+
+  Future<void> _share(ShareEvent event, Emitter emit) async {
+    emit(ShareState(event.weather));
+  }
+
+  Future<void> _backToWeather(BackToWeatherEvent event, Emitter emit) async {
+    emit(WeatherLoadedState(event.weather));
   }
 }
