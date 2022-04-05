@@ -28,6 +28,7 @@ class HomeBloc extends Bloc<HomeEvents, HomeState> {
     if (networkConnection) {
       try {
         String parsedWeather = await _repository.getCurrentWeahter();
+        // send users error if it exist
         if (parsedWeather ==
             "Геолокация недостпуна, вы не можете узнать погоду") {
           emit(ErrorMessager(
@@ -69,6 +70,7 @@ class HomeBloc extends Bloc<HomeEvents, HomeState> {
     emit(NavigateToOtherPage(event.weather));
   }
 
+  // this ShareState parametrs, are for show weather data when userrs decide in wich application they want to send weather text
   Future<void> _share(ShareEvent event, Emitter emit) async {
     if (event.weather.clouds.all > 50) {
       emit(ShareState(event.weather, "assets/weatherPic/cloud.png"));
@@ -79,6 +81,7 @@ class HomeBloc extends Bloc<HomeEvents, HomeState> {
     }
   }
 
+  /// Return weather data without loading it again
   Future<void> _backToWeather(BackToWeather event, Emitter emit) async {
     emit(WeatherLoaded(event.weather, event.weatherPicture));
   }
@@ -92,7 +95,6 @@ class HomeBloc extends Bloc<HomeEvents, HomeState> {
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
-      print(permission);
       if (permission == LocationPermission.denied) {
         emit(ErrorMessager("Нет разрешения на геолоакцию"));
       }

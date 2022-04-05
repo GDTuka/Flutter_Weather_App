@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:weather_app/data/model/weatherModelFiveDays/weather_model_five_days.dart';
-import 'package:weather_app/data/model/weather_model_current.dart';
 
 abstract class Weather {
   Future<String> generateWeatherApiLink(bool now);
@@ -26,7 +25,6 @@ class WeatherApi extends Weather {
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
-      print(permission);
       if (permission == LocationPermission.denied) {
         return "Нет разрешения на геолоакцию";
       }
@@ -49,6 +47,7 @@ class WeatherApi extends Weather {
     return serverLink;
   }
 
+  // if server link value are russion text, then retun this text to handle geolocation errors
   @override
   Future<String> getCurrentWeatherData() async {
     String serverLink = await generateWeatherApiLink(false);
@@ -69,6 +68,7 @@ class WeatherApi extends Weather {
     http.Response response;
     response = await http.post(Uri.parse(serverLink));
     FiveDayWeather weather = FiveDayWeather.fromJson(jsonDecode(response.body));
+    // Api return tempeture in Kelvins, i need it in Celcious
     for (int i = 0; i < weather.daily.length; i++) {
       weather.daily[i].temp.morn =
           (weather.daily[i].temp.morn - 273.15).roundToDouble();
