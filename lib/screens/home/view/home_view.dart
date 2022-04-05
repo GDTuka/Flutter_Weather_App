@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/data/model/weatherModelFiveDays/weather_model_five_days.dart';
 import 'package:weather_app/data/repository/weather_repository.dart';
-import 'package:weather_app/data/services/api_servisec.dart';
 import 'package:weather_app/screens/home/bloc/home_bloc.dart';
 import 'package:weather_app/screens/home/bloc/home_events.dart';
 import 'package:weather_app/screens/home/bloc/home_states.dart';
@@ -27,7 +25,7 @@ class _HomeState extends State<Home> {
           title: const Text("Weather now"),
           centerTitle: true,
         ),
-        body: HomeView(),
+        body: const HomeView(),
       ),
     );
   }
@@ -44,6 +42,11 @@ class HomeView extends StatelessWidget {
           state is NavigateToFiveDayPageEvent ||
           state is ShareState) {
         return const Center(child: CircularProgressIndicator());
+      }
+      if (state is ErrorMessager) {
+        return Center(
+          child: Text(state.message),
+        );
       }
       if (state is WeatherLoaded) {
         return SingleChildScrollView(
@@ -85,12 +88,12 @@ class HomeView extends StatelessWidget {
                       child: Image.asset("assets/weatherPic/cloud.png"),
                     ),
                     Container(
-                      margin: EdgeInsets.only(left: 7),
+                      margin: const EdgeInsets.only(left: 7),
                       child: Text("${state.weather.clouds.all}%",
                           style: const TextStyle(fontSize: 20)),
                     ),
                     Container(
-                      margin: EdgeInsets.only(left: 7),
+                      margin: const EdgeInsets.only(left: 7),
                       width: 25,
                       height: 25,
                       child: Image.asset("assets/weatherPic/wind.png"),
@@ -190,7 +193,7 @@ class HomeView extends StatelessWidget {
           ),
         );
       } else {
-        return Text("some Erro");
+        return const Text("some Erro");
       }
     }, listener: (context, state) {
       if (state is NavigateToOtherPage) {

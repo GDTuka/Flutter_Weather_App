@@ -8,8 +8,10 @@ class WeatherRepository {
   final WeatherApi _weatherApi;
   Future<String> generateServerLink(bool now) async =>
       _weatherApi.generateWeatherApiLink(now);
-  Future<MainWeather> getCurrentWeahter() async =>
+  Future<String> getCurrentWeahter() async =>
       _weatherApi.getCurrentWeatherData();
   Future<FiveDayWeather> getFiveDayWeather() async =>
       _weatherApi.getFiveDayWeatherData();
+  Future<List<bool>> checkIfServerLinksAlive() async =>
+      _weatherApi.checkIfServerAlive();
 }

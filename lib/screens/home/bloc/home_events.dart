@@ -1,4 +1,5 @@
 import 'package:weather_app/data/model/weather_model_current.dart';
+import 'package:weather_app/screens/home/view/home_view.dart';
 
 abstract class HomeEvents {}
 
@@ -19,3 +20,5 @@ class BackToWeather extends HomeEvents {
   String weatherPicture;
   BackToWeather(this.weather, this.weatherPicture);
 }
+
+class CheckIfLocationAvailable extends HomeEvents {}

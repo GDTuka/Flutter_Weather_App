@@ -15,3 +15,8 @@ class ShareState extends FiveDayStates {
   FiveDayWeather weather;
   ShareState(this.weather);
 }
+
+class ErrorMessenge extends FiveDayStates {
+  String message;
+  ErrorMessenge(this.message);
+}

@@ -1,5 +1,4 @@
 import 'package:weather_app/data/model/weather_model_current.dart';
-import 'package:weather_app/screens/home/view/home_view.dart';
 
 abstract class HomeState {}
 
@@ -20,4 +19,9 @@ class ShareState extends HomeState {
   MainWeather weather;
   String weatherPicture;
   ShareState(this.weather, this.weatherPicture);
+}
+
+class ErrorMessager extends HomeState {
+  String message;
+  ErrorMessager(this.message);
 }
