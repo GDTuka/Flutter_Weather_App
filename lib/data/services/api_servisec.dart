@@ -4,6 +4,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:weather_app/data/model/weatherModelFiveDays/weather_model_five_days.dart';
 import 'package:weather_app/data/model/weather_model_current.dart';
+import 'dart:math';
 
 abstract class Weather {
   Future<String> generateWeatherApiLink(bool now);
@@ -32,14 +33,17 @@ class WeatherApi extends Weather {
     if (permission == LocationPermission.deniedForever) {
       return "denied forever";
     }
-    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
 
     double lat = position.latitude;
     double lon = position.longitude;
     String key = "bab303583250e1deb1bd08379c680633";
-    String serverLink = "https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}";
+    String serverLink =
+        "https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}";
     if (now) {
-      serverLink = "https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=current,hourly,minutely,alerts&appid=$key";
+      serverLink =
+          "https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=current,hourly,minutely,alerts&appid=$key";
     }
     return serverLink;
   }
@@ -49,8 +53,10 @@ class WeatherApi extends Weather {
     String serverLink = await generateWeatherApiLink(false);
     http.Response response;
     response = await http.post(Uri.parse(serverLink));
-    print(response.body);
+    print(response.statusCode);
     MainWeather weather = MainWeather.fromJson(jsonDecode(response.body));
+    weather.main.temp = (weather.main.temp - 273.15).roundToDouble();
+    weather.visibility = weather.visibility ~/ 100;
     return weather;
   }
 
